@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h2 class="mb-3">Enviar Datos a API</h2>
+  
+    <div class="mb-3">
+      <input type="text" class="form-control" [(ngModel)]="inputData" placeholder="Ingresa el id de la transacción">
+    </div>
+  
+    <button class="btn btn-primary me-2" (click)="sendData()" [disabled]="isLoading">
+      Enviar
+    </button>
+    <button class="btn btn-danger" (click)="clearData()" [disabled]="isLoading">Limpiar</button>
+  
+    <!-- Toast de carga -->
+    <div *ngIf="isLoading" class="alert alert-info mt-3">
+      <div class="d-flex align-items-center">
+        <span class="spinner-border spinner-border-sm me-2"></span>
+        Consultando API...
+      </div>
+    </div>
+  
+    <!-- Mostrar respuesta de la API -->
+    <div class="mt-4 p-3 border rounded bg-light" *ngIf="responseData">
+      <h5>Respuesta de la API:</h5>
+      <pre class="text-muted">{{ responseData | json }}</pre>
+    </div>
+  </div>
+  

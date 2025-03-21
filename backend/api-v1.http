@@ -1,0 +1,28 @@
+### GET - Health
+GET http://localhost:3001/health
+Content-Type: application/json
+
+### POST - Register
+POST http://localhost:3001/api/v1/register
+Content-Type: application/json
+
+{
+  "name": "Juan",
+  "surname": "Perez",
+  "email": "juan.perez@example.com",
+  "password": "supersecurepassword"
+}
+
+### POST - Login
+POST http://localhost:3001/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "juan.perez@example.com",
+  "password": "supersecurepassword"
+}
+
+### GET - Transactions
+GET http://localhost:3001/api/v1/transactions/getTransactionByIdStateResource?transactionId=4aa93b80-577f-11eb-add8-83fc90ae146c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjODEwZmZhLWViYjEtNGE4Yy1hNDhmLWRiZWNiMzQzYTRkOSIsIm5hbWUiOiJKdWFuIiwic3VybmFtZSI6IlBlcmV6IiwiZW1haWwiOiJqdWFuLnBlcmV6QGV4YW1wbGUuY29tIiwiaWF0IjoxNzQyNTgwNzAyLCJleHAiOjE3NDI1OTMzMDJ9.CQzFEgqjqRTlllBAm1l08xGbzhPxEptgq_XH4dT7z3c
+Content-Type: application/json

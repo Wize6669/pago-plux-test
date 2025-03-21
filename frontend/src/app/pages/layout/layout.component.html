@@ -1,0 +1,43 @@
+<div class="layout-container">
+  <header class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="/dashboard">Mi Aplicación</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="isHome()" [class.fw-bold]="isHome()" (click)="home()">
+              Home
+              <span *ngIf="isHome()" class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="isTransactions()" [class.fw-bold]="isTransactions()" (click)="transactions()">
+              Transacciones
+              <span *ngIf="isTransactions()" class="visually-hidden">(current)</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center">
+          <span class="text-light me-3">
+            <i class="bi bi-person-circle me-1"></i>
+            {{ userInfo?.email || 'Usuario' }}
+          </span>
+          <button class="btn btn-outline-light btn-sm" (click)="logout()">Salir</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-4">
+    <ng-content></ng-content>
+  </main>
+</div>
+
+<router-outlet></router-outlet>
