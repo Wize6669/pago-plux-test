@@ -39,13 +39,19 @@ Si prefieres hacerlo manualmente, sigue los pasos a continuación para configura
 
 2.  Crea un archivo `.env` en el directorio raíz del backend. Si no sabes qué incluir, puedes revisar el archivo `.env.example`, que contiene todos los parámetros necesarios para configurar el entorno.
 
-3.  Instala las dependencias y compila el proyecto con pnpm:
+3.  Instala las dependencias con pnpm:
+
+    ```bash
+    pnpm install --prod
+    ```
+    
+4.  Compila el proyecto con pnpm:
 
     ```bash
     pnpm run build
     ```
 
-4.  Inicia el servidor:
+5.  Inicia el servidor:
 
     ```bash
     pnpm run start
