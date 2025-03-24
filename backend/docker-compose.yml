@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "442:8080" 
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3001/health"]
+      interval: 13s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - db_postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: pago_plux
+      POSTGRES_USER: pagoPlux
+      POSTGRES_PASSWORD: 123pagoPlux
+    deploy:
+      resources:
+        limits:
+          memory: 900M
+    healthcheck:
+      test:
+        - CMD
+        - pg_isready
+        - '-q'
+        - '-d'
+        - 'pago_plux'
+        - '-U'
+        - 'pagoPlux'
+      retries: 3
+      timeout: 5s
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_postgresql:
+    driver: local

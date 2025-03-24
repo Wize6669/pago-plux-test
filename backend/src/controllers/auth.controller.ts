@@ -22,9 +22,10 @@ const registerController = async (req: Request, res: Response): Promise<void> =>
 const loginController = async (req: Request, res: Response): Promise<void> => {
     const {email, password} = req.body;
     const result = await longinService({email, password});
+    console.log(result)
 
     if (!result) {
-        res.status(500).json({error: 'Error al crear el usuario. No se recibió resultado de servicio.'});
+        res.status(500).json({error: 'No se recibió resultado de servicio.'});
         return;
     }
 

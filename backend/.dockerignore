@@ -1,0 +1,9 @@
+**/*node_modules
+**/*dist
+*/.env
+README.md
+.editorconfig
+.gitignore
+api-v1.http
+Dockerfile
+.idea/

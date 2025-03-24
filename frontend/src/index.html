@@ -7,15 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script src=" https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://sandbox-paybox.pagoplux.com/paybox/index.js"></script>
-  </head>
-  <body>
 
-    <script>
+    <script type="text/javascript">
       var data = {
+        PayboxRemail: "dmorales@pagoplux.com",
+        PayboxSendmail: "zapataw59@gmail",
+        PayboxRename: "dmorales",
+        PayboxSendname: "John doe",
+        PayboxBase0: "2.0",
+        PayboxBase12: "10.0",
+        PayboxDescription: "Descripcion del pago",
+        PayboxLanguage: "es",
+        PayboxDirection: "Direccion tarjetahabiente",
+        PayBoxClientPhone: "09840552267",
+        PayboxProduction: false,
+        PayBoxClientIdentification: "1754199055",
+        PayboxEnvironment: "sandbox",
+        PayboxPagoPlux: false,
       };
     </script>
 
+    <script type="text/javascript">
+      var onAuthorize = function (response) {
+        if (response.status === "succeeded") {
+          window.dispatchEvent(
+            new CustomEvent("paymentSuccess", {
+              detail: response.detail.id_transaccion,
+            })
+          );
+          return;
+        }
+
+        window.dispatchEvent(
+          new CustomEvent("paymentError", { detail: "Pago fallido" })
+        );
+      };
+    </script>
+
+    <script src="https://sandbox-paybox.pagoplux.com/paybox/index.js"></script>
+  </head>
+  <body>
     <app-root></app-root>
   </body>
 </html>

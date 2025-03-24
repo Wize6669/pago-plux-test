@@ -117,7 +117,139 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionResponse'
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 0
+                  description:
+                    type: string
+                    example: "Success"
+                  detail:
+                    type: object
+                    properties:
+                      respuest:
+                        type: object
+                        properties:
+                          id_establecimiento:
+                            type: integer
+                            example: 555
+                          monto:
+                            type: string
+                            example: "12.00"
+                          fecha_transaccion:
+                            type: string
+                            format: date-time
+                            example: "2025-03-23T22:00:20.000Z"
+                          descripcion:
+                            type: string
+                            example: "Descripcion del pago"
+                          id_transaccion:
+                            type: string
+                            example: "f9819772-295b-4319-8ab0-998a17ea7460"
+                          valor_catalogo_estado:
+                            type: string
+                            example: "PAG"
+                          respuesta:
+                            type: string
+                            nullable: true
+                          voucher:
+                            type: string
+                            example: "514839-250323-333476"
+                          adquiriente:
+                            type: string
+                            example: "DINERS"
+                          valor_base0:
+                            type: string
+                            example: "2.00"
+                          valor_base12:
+                            type: string
+                            example: "8.70"
+                          valor_iva:
+                            type: string
+                            example: "1.30"
+                          numero_lote:
+                            type: string
+                            example: "250323"
+                          propina:
+                            type: string
+                            nullable: true
+                          banco:
+                            type: string
+                            example: "GUAYAQUIL"
+                          emisor_tarjeta:
+                            type: string
+                            example: "BANCO DE GUAYAQUIL, S.A."
+                          numero_cuotas:
+                            type: integer
+                            example: 0
+                          proveedor_servicio_pago:
+                            type: string
+                            example: "datafast"
+                          tipo_credito:
+                            type: string
+                            example: "00"
+                          meses_gracia:
+                            type: integer
+                            example: 0
+                          interes:
+                            type: integer
+                            example: 0
+                          valor_interes:
+                            type: string
+                            example: "0.00"
+                          extras:
+                            type: string
+                            nullable: true
+                          marca:
+                            type: string
+                            example: "VISA"
+                          catalogos:
+                            type: object
+                            properties:
+                              nombre_catalogo:
+                                type: string
+                                example: "Aprobada"
+                          cliente:
+                            type: object
+                            properties:
+                              nombres:
+                                type: string
+                                example: "JOHN DOE"
+                              numero_identificacion:
+                                type: string
+                                example: "1754199055"
+                          detalle:
+                            type: object
+                            properties:
+                              numero_tarjeta:
+                                type: string
+                                example: "4540 63XX XXXX 8783"
+                          items:
+                            type: array
+                            items:
+                              type: object
+                          mid:
+                            type: string
+                            example: "7400000001"
+                          tid:
+                            type: string
+                            example: "FP230223"
+                          adquirente:
+                            type: string
+                            example: "DINERS"
+                          informacionTarjeta:
+                            type: object
+                            properties:
+                              mesExpiracion:
+                                type: string
+                                example: "04"
+                              anioExpiracion:
+                                type: string
+                                example: "2025"
+                          tipoPago:
+                            type: string
+                            example: "tarjeta"
         '401':
           description: Unauthorized - Invalid or missing token
           content:
@@ -287,9 +419,12 @@ components:
     NotFoundErrorResponse:
       type: object
       properties:
-        error:
+        status:
+          type: integer
+          example: 404
+        message:
           type: string
-          example: "Transaction not found"
+          example: "Transacción no encontrada."
 
     ErrorResponse:
       type: object

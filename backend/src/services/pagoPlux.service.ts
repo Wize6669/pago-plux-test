@@ -18,6 +18,10 @@ const getTransactionByIdService = async (transactionId: string) => {
         const data = response.data;
 
         if(data.code !== 0) {
+            if (data.description === 'Transacción no encontrada.') {
+                return {error: 'Transacción no encontrada.', code: 404};
+            }
+
             return {error: data.description, code: 400}
         }
 

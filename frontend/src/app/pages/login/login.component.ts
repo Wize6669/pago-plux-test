@@ -76,6 +76,10 @@ export class LoginComponent {
         error: (error) => {
           this.errors = processErrorsForm(error.error);
           this.isLoading = false; 
+
+          setTimeout(() => {
+            this.errors = {};
+          }, 4000);
         },
       });
   }
